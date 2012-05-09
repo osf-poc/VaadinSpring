@@ -1,34 +1,37 @@
 package osf.poc.vaadin.model;
 
-//import com.sun.jersey.api.client.Client;
-//import com.sun.jersey.api.client.GenericType;
-//import com.sun.jersey.api.client.WebResource;
-//import com.sun.jersey.api.client.config.ClientConfig;
-//import com.sun.jersey.api.client.config.DefaultClientConfig;
+import osf.poc.springremote.model.PropertyItem;
 import com.vaadin.data.Container.Filterable;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.AbstractInMemoryContainer;
 import com.vaadin.data.util.filter.UnsupportedFilterException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-//import javax.ws.rs.core.MediaType;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import osf.poc.springremote.resources.IPropertiesResource;
 
 public class PropertiesContainer extends AbstractInMemoryContainer<Integer, String, PropertyItem> implements Filterable {
     private List<PropertyItem> items = new ArrayList<PropertyItem>();
     
     public PropertiesContainer(){
-        
         //ClientConfig config = new DefaultClientConfig(); 
         //Client client = Client.create(config);
         //WebResource service = client.resource("http://localhost:8080/JerseyRest-1.0-SNAPSHOT/");
+        //File test = new File("spring-configuration.xml");
+        //System.out.println("Test: " + test.getAbsolutePath());
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-configuration.xml");
+        IPropertiesResource propertiesResource = (IPropertiesResource)context.getBean("HttpUserService");
         
-        osf.poc.vaadin.model.Property p = new osf.poc.vaadin.model.Property("wicht", "beardy");
+        //osf.poc.vaadin.model.Property p = new osf.poc.vaadin.model.Property("wicht", "beardy");
         
-        List<osf.poc.vaadin.model.Property> properties = Arrays.asList(p);
-        //service.path("configurations").path("properties").accept(MediaType.APPLICATION_XML).get(new GenericType<List<osf.poc.vaadin.model.Property>>(){});
+        //List<osf.poc.vaadin.model.Property> properties = Arrays.asList(p);
+        //List<osf.poc.springremote.model.Property> properties = propertiesResource.getProperties();
+        List<osf.poc.springremote.model.Property> properties = propertiesResource.getProperties();
         
         List<Integer> ids = new ArrayList<Integer>();
         

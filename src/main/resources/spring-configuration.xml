@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+">
+
+    <!-- Http Invoker client declaration -->
+    <bean id="HttpUserService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+ 
+        <!-- Http service url which is called -->
+        <property name="serviceUrl" value="http://localhost:8080/SpringRest-1.0-SNAPSHOT/http/HttpPropertiesResource" />
+ 
+        <!-- Http service interface which is called -->
+        <property name="serviceInterface" value="osf.poc.springremote.resources.IPropertiesResource" />
+ 
+    </bean>
+
+</beans>

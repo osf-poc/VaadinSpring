@@ -1,9 +1,10 @@
 package osf.poc.vaadin;
 
 import com.vaadin.Application;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.ui.*;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import osf.poc.vaadin.model.PropertiesContainer;
 
 public class ConfiguratorApplication extends Application {

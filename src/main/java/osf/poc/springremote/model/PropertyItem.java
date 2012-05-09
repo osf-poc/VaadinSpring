@@ -1,4 +1,4 @@
-package osf.poc.vaadin.model;
+package osf.poc.springremote.model;
 
 import com.vaadin.data.util.BeanItem;
 
