@@ -6,13 +6,13 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import osf.poc.vaadin.model.PropertiesContainer;
+import osf.poc.vaadin.model.RESTContainer;
 
 public class ConfiguratorApplication extends Application {
     private static String[] visibleCols = new String[] { "name", "value" };
 
     private Table contactList = new Table();
     private HorizontalLayout bottomLeftCorner = new HorizontalLayout();
-    private PropertiesContainer container = new PropertiesContainer();
     
     @Override
     public void init() {
@@ -32,7 +32,10 @@ public class ConfiguratorApplication extends Application {
         left.addComponent(bottomLeftCorner);
     }
 
-    private void initPropertiesList() {        
+    private void initPropertiesList(){
+        //PropertiesContainer container = new PropertiesContainer();
+        RESTContainer container = new RESTContainer();
+        
         contactList.setContainerDataSource(container);
         contactList.setVisibleColumns(visibleCols);
         contactList.setSelectable(true);
