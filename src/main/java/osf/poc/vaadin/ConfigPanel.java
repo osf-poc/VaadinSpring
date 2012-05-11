@@ -14,7 +14,7 @@ public class ConfigPanel extends Panel {
     private final VerticalLayout mainLayout = new VerticalLayout();
     
     // Components
-    private final Label subTitle = new Label(SUBTITLE);
+    private final Label subTitle = new Label();
     private final Table propertiesTable = new Table();
     
     // Datasource to map with the table
