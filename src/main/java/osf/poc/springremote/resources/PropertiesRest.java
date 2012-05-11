@@ -1,22 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package osf.poc.vaadin.model;
+package osf.poc.springremote.resources;
 
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import osf.poc.springremote.model.Property;
+import osf.poc.model.Property;
 
 @XmlRootElement(name="properties")
-public class Properties {
+public class PropertiesRest {
 	private int count;
 	private List<Property> properties;
 
-	public Properties() {}
+	public PropertiesRest() {}
 	
-	public Properties(List<Property> properties) {
+	public PropertiesRest(List<Property> properties) {
 		this.properties = properties;
 		this.count = properties.size();
 	}

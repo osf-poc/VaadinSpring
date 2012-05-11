@@ -1,10 +1,9 @@
-package osf.poc.springremote.model;
+package osf.poc.model;
 
 import java.io.Serializable;
 
 /**
- *
- * @author Jeremy
+ * Main model class representing a configuration property
  */
 public class Property implements Serializable {
     
@@ -12,7 +11,7 @@ public class Property implements Serializable {
     private String value;
     
     public Property() {
-        // Nothing
+        // Nothing to do
     }
     
     public Property(String name, String value) {

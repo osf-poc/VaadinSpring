@@ -5,8 +5,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import osf.poc.vaadin.model.PropertiesContainer;
-import osf.poc.vaadin.model.RESTContainer;
+import osf.poc.vaadin.model.RestContainer;
+import osf.poc.vaadin.model.HttpInvokerContainer;
 
 public class ConfiguratorApplication extends Application {
     private static String[] visibleCols = new String[] { "name", "value" };
@@ -32,9 +32,9 @@ public class ConfiguratorApplication extends Application {
         left.addComponent(bottomLeftCorner);
     }
 
-    private void initPropertiesList(){
-        //PropertiesContainer container = new PropertiesContainer();
-        RESTContainer container = new RESTContainer();
+    private void initPropertiesList() {
+        HttpInvokerContainer container = new HttpInvokerContainer();
+        //RestContainer container = new RestContainer();
         
         contactList.setContainerDataSource(container);
         contactList.setVisibleColumns(visibleCols);
