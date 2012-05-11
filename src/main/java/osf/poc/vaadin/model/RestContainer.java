@@ -11,6 +11,10 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 import osf.poc.springremote.resources.PropertiesRest;
 
+/**
+ * Container data model for mapping tables with configuration properties
+ * using Sprint RESTful webservices
+ */
 public class RestContainer extends AbstractInMemoryContainer<Integer, String, PropertyItem> implements Filterable {
     private List<PropertyItem> items = new ArrayList<PropertyItem>();
     

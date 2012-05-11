@@ -1,44 +1,60 @@
 package osf.poc.vaadin;
 
 import com.vaadin.Application;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
-import osf.poc.vaadin.model.RestContainer;
+import com.vaadin.ui.*;
 import osf.poc.vaadin.model.HttpInvokerContainer;
 
+/**
+ * Main class for the Vaadin configuration application
+ */
 public class ConfiguratorApplication extends Application {
-    private static String[] visibleCols = new String[] { "name", "value" };
-
-    private Table contactList = new Table();
-    private HorizontalLayout bottomLeftCorner = new HorizontalLayout();
+    public static final String MENU_CONFIG_INVOKER = "Configuration HttpInvoker";
+    public static final String MENU_CONFIG_REST = "Configuration REST";
+    public static final String MENU_ABOUT = "About";
+    
+    // Page components
+    private final Label title = new Label("Configuration application using Vaadin/Spring");
+    private final MenuBar menuBar = new MenuBar();
+    Panel currentPanel = new ConfigPanel(new HttpInvokerContainer());
+    
+    // Page layouts
+    private VerticalLayout mainLayout = new VerticalLayout();
     
     @Override
     public void init() {
         initLayout();
-        initPropertiesList();
     }
 
     private void initLayout() {
-        VerticalLayout left = new VerticalLayout();
-        setMainWindow(new Window("Vaadin Configurator", left));
+        final Window main = new Window("Vaadin Spring Configurator", mainLayout);
+        //main.setName("vaadin-spring-configurator");
+        main.setDebugId("WindowId");            // For performance tests
+        mainLayout.setDebugId("AppLayoutId");   // For performance tests
+        setMainWindow(main);
         
-        left.setSizeFull();
-        left.addComponent(contactList);
-        contactList.setSizeFull();
-        contactList.setColumnReorderingAllowed(true);
-        left.setExpandRatio(contactList, 1);
-        left.addComponent(bottomLeftCorner);
+        // Title
+        title.setStyleName("h1");
+        title.setWidth(null);
+        mainLayout.addComponent(title);
+        
+        // Menu
+        MainMenuCommand command = new MainMenuCommand(this);
+        menuBar.addItem(MENU_CONFIG_INVOKER, command);
+        menuBar.addItem(MENU_CONFIG_REST, command);
+        menuBar.addItem(MENU_ABOUT, command);
+        mainLayout.addComponent(menuBar);
+        
+        // Panel
+        mainLayout.addComponent(currentPanel);
+        
+        // Layout properties
+        mainLayout.setSpacing(true);
+        mainLayout.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+        mainLayout.setComponentAlignment(menuBar, Alignment.MIDDLE_CENTER);
     }
-
-    private void initPropertiesList() {
-        HttpInvokerContainer container = new HttpInvokerContainer();
-        //RestContainer container = new RestContainer();
-        
-        contactList.setContainerDataSource(container);
-        contactList.setVisibleColumns(visibleCols);
-        contactList.setSelectable(true);
-        contactList.setImmediate(true);
+    
+    void setPanel(Panel newPanel) {
+        mainLayout.replaceComponent(currentPanel, newPanel);
+        currentPanel = newPanel;
     }
 }

@@ -12,6 +12,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import osf.poc.springremote.resources.IPropertiesHttpInvoker;
 
+/**
+ * Container data model for mapping tables with configuration properties
+ * using Sprint Remoting and the Http Invoker method
+ */
 public class HttpInvokerContainer extends AbstractInMemoryContainer<Integer, String, PropertyItem> implements Filterable {
     private List<PropertyItem> items = new ArrayList<PropertyItem>();
     
