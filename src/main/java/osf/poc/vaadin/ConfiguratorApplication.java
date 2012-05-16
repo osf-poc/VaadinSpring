@@ -2,26 +2,36 @@ package osf.poc.vaadin;
 
 import com.vaadin.Application;
 import com.vaadin.ui.*;
+import osf.poc.springremote.resources.IPropertiesHttpInvoker;
 import osf.poc.vaadin.model.HttpInvokerContainer;
 
 /**
  * Main class for the Vaadin configuration application
  */
 public class ConfiguratorApplication extends Application {
+    
+    // Constants
     public static final String MENU_CONFIG_INVOKER = "Configuration HttpInvoker";
     public static final String MENU_CONFIG_REST = "Configuration REST";
     public static final String MENU_ABOUT = "About";
     
+    // Helper to access our Spring beans
+    private SpringContextHelper contextHelper;
+    
     // Page components
     private final Label title = new Label("Configuration application using Vaadin/Spring");
     private final MenuBar menuBar = new MenuBar();
-    Panel currentPanel = new ConfigPanel(new HttpInvokerContainer());
+    Panel currentPanel;
     
     // Page layouts
     private VerticalLayout mainLayout = new VerticalLayout();
     
     @Override
     public void init() {
+        // Must be created here (spring bean not available at construction)
+        contextHelper = new SpringContextHelper(this);
+        currentPanel = new ConfigPanel(new HttpInvokerContainer((IPropertiesHttpInvoker)getSpringBean("ConfigurationService")));
+        
         initLayout();
     }
 
@@ -51,6 +61,10 @@ public class ConfiguratorApplication extends Application {
         mainLayout.setSpacing(true);
         mainLayout.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
         mainLayout.setComponentAlignment(menuBar, Alignment.MIDDLE_CENTER);
+    }
+    
+    Object getSpringBean(String name) {
+        return contextHelper.getBean(name);
     }
     
     void setPanel(Panel newPanel) {

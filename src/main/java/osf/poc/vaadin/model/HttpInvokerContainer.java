@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import osf.poc.springremote.resources.IPropertiesHttpInvoker;
 
 /**
@@ -19,9 +17,9 @@ import osf.poc.springremote.resources.IPropertiesHttpInvoker;
 public class HttpInvokerContainer extends AbstractInMemoryContainer<Integer, String, PropertyItem> implements Filterable {
     private List<PropertyItem> items = new ArrayList<PropertyItem>();
     
-    public HttpInvokerContainer(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-configuration.xml");
-        IPropertiesHttpInvoker propertiesResource = (IPropertiesHttpInvoker)context.getBean("ConfigurationService");
+    public HttpInvokerContainer(IPropertiesHttpInvoker propertiesResource) {
+        //ApplicationContext context = new ClassPathXmlApplicationContext("spring-configuration.xml");
+        //IPropertiesHttpInvoker propertiesResource = (IPropertiesHttpInvoker)context.getBean("ConfigurationService");
         
         List<osf.poc.model.Property> properties = propertiesResource.getProperties();
         

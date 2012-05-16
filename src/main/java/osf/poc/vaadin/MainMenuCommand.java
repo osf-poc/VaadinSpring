@@ -2,6 +2,7 @@ package osf.poc.vaadin;
 
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import osf.poc.springremote.resources.IPropertiesHttpInvoker;
 import osf.poc.vaadin.model.HttpInvokerContainer;
 import osf.poc.vaadin.model.RestContainer;
 
@@ -18,8 +19,10 @@ public class MainMenuCommand implements MenuBar.Command {
 
     @Override
     public void menuSelected(MenuItem selectedItem) {
-        if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_INVOKER))
-            application.setPanel(new ConfigPanel(new HttpInvokerContainer()));
+        if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_INVOKER)) {
+            IPropertiesHttpInvoker invoker = (IPropertiesHttpInvoker)application.getSpringBean("ConfigurationService");
+            application.setPanel(new ConfigPanel(new HttpInvokerContainer(invoker)));
+        }
         else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_REST))
             application.setPanel(new ConfigPanel(new RestContainer()));
         else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_ABOUT))
