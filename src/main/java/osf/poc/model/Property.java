@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Main model class representing a configuration property
  */
 public class Property implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private String name;
     private String value;
