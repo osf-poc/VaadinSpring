@@ -1,11 +1,10 @@
 package osf.poc.springremote.resources;
 
 import java.util.List;
+import javax.jws.WebService;
 import osf.poc.model.Property;
 
-/**
- * Abstracted resource shared using HTTP invoder
- */
+@WebService
 public interface IPropertiesHttpInvoker {
 
     public List<Property> getProperties();
