@@ -11,7 +11,15 @@
  
         <!-- Http service interface which is called -->
         <property name="serviceInterface" value="osf.poc.springremote.resources.IPropertiesHttpInvoker" />
- 
+    
     </bean>
-
+    
+    <bean id="propertiesWebService" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+        <property name="serviceInterface" value="osf.poc.springremote.resources.IPropertiesWebService"/>
+        <property name="wsdlDocumentUrl" value="http://localhost:8081/SpringRest-1.0-SNAPSHOT/jaxws/PropertiesJAXWS?wsdl"/>
+        <property name="namespaceUri" value="http://resources.springremote.poc.osf/"/>
+        <property name="serviceName" value="PropertiesJAXWS"/>
+        <property name="portName" value="PropertiesEndPointPort"/>
+    </bean>
+    
 </beans>

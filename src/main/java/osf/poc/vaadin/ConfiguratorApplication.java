@@ -12,6 +12,7 @@ public class ConfiguratorApplication extends Application {
     
     // Constants
     public static final String MENU_CONFIG_INVOKER = "Configuration HttpInvoker";
+    public static final String MENU_CONFIG_JAXWS = "Configuration JAX-WS";
     public static final String MENU_CONFIG_REST = "Configuration REST";
     public static final String MENU_ABOUT = "About";
     
@@ -50,6 +51,7 @@ public class ConfiguratorApplication extends Application {
         // Menu
         MainMenuCommand command = new MainMenuCommand(this);
         menuBar.addItem(MENU_CONFIG_INVOKER, command);
+        menuBar.addItem(MENU_CONFIG_JAXWS, command);
         menuBar.addItem(MENU_CONFIG_REST, command);
         menuBar.addItem(MENU_ABOUT, command);
         mainLayout.addComponent(menuBar);
