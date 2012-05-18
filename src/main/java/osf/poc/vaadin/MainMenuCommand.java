@@ -24,11 +24,14 @@ public class MainMenuCommand implements MenuBar.Command {
             IPropertiesHttpInvoker invoker = (IPropertiesHttpInvoker)application.getSpringBean("ConfigurationService");
             application.setPanel(new ConfigPanel(new HttpInvokerContainer(invoker)));
         }
-        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_REST))
+        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_REST)) {
             application.setPanel(new ConfigPanel(new RestContainer()));
-        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_JAXWS))
+        }
+        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_CONFIG_JAXWS)) {
             application.setPanel(new ConfigPanel(new JAXContainer()));
-        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_ABOUT))
+        }
+        else if(selectedItem.getText().equals(ConfiguratorApplication.MENU_ABOUT)) {
             application.setPanel(new AboutPanel());
+        }
     }
 }
